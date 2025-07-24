@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cell-Land</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="misEstilos.css">
+    <script src="https://unpkg.com/axios@1.3.4/dist/axios.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+    <script src="misScripts.js" defer></script>
+</head>
+<body onload="obtenerTodos()">
+    <header class="titulo">
+        <h1>Cell-Land</h1>
+        <img src="logo.png" alt="Icono" width="60" height="60">
+    </header>
+    <hr class="linea"/>
+    <main>
+        <section>
+            <h2>Administración de productos</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Modelo</th>
+                            <th>Color</th>
+                            <th>Almacenamiento</th>
+                            <th>Procesador</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tblContenido">
+                        <!-- Datos dinámicos -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section>
+            <h3>Consultar artículo</h3>
+            <form onsubmit="event.preventDefault(); consultarUno();" autocomplete="off">
+                <label for="txtConsulta">ID:</label>
+                <input type="number" id="txtConsulta" name="txtConsulta" placeholder="Ingrese su ID" min="1" required>
+                <button type="submit">Consultar</button>
+            </form>
+            <div class="consulta-detalle">
+                <label for="consultaNombre">Nombre:</label>
+                <textarea id="consultaNombre" rows="1" cols="30" readonly></textarea>
+                <label for="consultaModelo">Modelo:</label>
+                <textarea id="consultaModelo" rows="1" cols="30" readonly></textarea>
+                <label for="consultaColor">Color:</label>
+                <textarea id="consultaColor" rows="1" cols="30" readonly></textarea>
+                <label for="consultaAlmacenamiento">Almacenamiento:</label>
+                <textarea id="consultaAlmacenamiento" rows="1" cols="30" readonly></textarea>
+                <label for="consultaProcesador">Procesador:</label>
+                <textarea id="consultaProcesador" rows="1" cols="30" readonly></textarea>
+            </div>
+            <button onclick="modificarUno()">Modificar</button>
+            <button onclick="eliminarUno()" class="btn-danger">Eliminar</button>
+        </section>
+        <section>
+            <h3>Agregar artículo</h3>
+            <form onsubmit="event.preventDefault(); agregarUno();" autocomplete="off">
+                <input type="text" id="inputMarca" name="inputMarca" placeholder="Marca" maxlength="30" required>
+                <input type="text" id="inputModelo" name="inputModelo" placeholder="Modelo" maxlength="30" required>
+                <input type="text" id="inputColor" name="inputColor" placeholder="Color" maxlength="20" required>
+                <input type="number" id="inputAlmacenamiento" name="inputAlmacenamiento" placeholder="Almacenamiento (GB)" min="1" max="1024" required>
+                <input type="text" id="inputProcesador" name="inputProcesador" placeholder="Procesador" maxlength="30" required>
+                <button type="submit">Agregar Nuevo</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
