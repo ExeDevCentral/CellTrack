@@ -20,6 +20,24 @@ async function obtenerTodos() {
             `;
         }
         cuerpoTabla.innerHTML = salida;
+        let cardsContainer = document.getElementById("mobileCardsContainer");
+        if (cardsContainer) {
+            let cardsHtml = "";
+            for (let el of data.dispositivos) {
+                cardsHtml += `
+                    <div class="mobile-card">
+                        <div class="card-badge">ID #${sanitize(el.id)}</div>
+                        <h4 class="card-title">${sanitize(el.marca)} ${sanitize(el.modelo)}</h4>
+                        <div class="card-props">
+                            <span><strong>Color:</strong> ${sanitize(el.color)}</span>
+                            <span><strong>Almacenamiento:</strong> ${sanitize(el.almacenamiento)} GB</span>
+                            <span><strong>Procesador:</strong> ${sanitize(el.procesador)}</span>
+                        </div>
+                    </div>
+                `;
+            }
+            cardsContainer.innerHTML = cardsHtml;
+        }
         animateRows();
     } catch (error) {
         showToast("Error al cargar dispositivos", "error");
@@ -183,3 +201,13 @@ function sanitize(str) {
 .toast-error { background: #e74c3c; color: #fff; }
 .toast-info { background: #556b2f; color: #fff; }
 */
+function toggleTableView() {
+    const tableWrapper = document.getElementById('tableWrapper');
+    const cardsWrapper = document.getElementById('mobileCardsContainer');
+    const btn = document.getElementById('btnToggleView');
+    if (!tableWrapper || !cardsWrapper || !btn) return;
+    
+    const isCardsVisible = cardsWrapper.classList.toggle('active-cards');
+    tableWrapper.classList.toggle('hidden-table', isCardsVisible);
+    btn.textContent = isCardsVisible ? '💻 Vista Tabla' : '📱 Modo Tarjeta';
+}

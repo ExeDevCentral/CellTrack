@@ -11,13 +11,17 @@
 <body onload="obtenerTodos()">
     <header class="titulo">
         <h1>Cell-Land</h1>
-        <img src="logo.png" alt="Icono" width="60" height="60">
+        <img src="logo.png" alt="Icono" width="60" height="60" loading="lazy" decoding="async">
     </header>
     <hr class="linea"/>
     <main>
         <section>
-            <h2>Administración de productos</h2>
-            <div class="table-responsive">
+            <div class="section-header-row">
+                <h2>Administración de productos</h2>
+                <button type="button" class="btn-toggle-view" id="btnToggleView" onclick="toggleTableView()">📱 Modo Tarjeta</button>
+            </div>
+            <div id="mobileCardsContainer" class="mobile-cards-grid"></div>
+            <div class="table-responsive" id="tableWrapper">
                 <table>
                     <thead>
                         <tr>
